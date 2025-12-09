@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product } from '../types';
 import { WHATSAPP_NUMBER } from '../constants';
-import { ShoppingBag, Loader2 } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 import { generateImage } from '../utils/genai';
 
 interface ProductCardProps {
@@ -10,33 +10,20 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let mounted = true;
     const fetchImage = async () => {
-      // Check if we have a cached version or need to generate
-      const cacheKey = `img_cache_prod_${product.id}`;
-      
-      const prompt = `Professional luxury product photography of ${product.name}, ${product.description}. 
-      Style: Minimalist, high-end, soft pink and rose gold color palette, soft lighting, photorealistic, 4k resolution. 
-      The product should be the central focus on a clean background.`;
-      
-      // Pass cacheKey to the generator
-      const generated = await generateImage(prompt, cacheKey);
-      
-      if (mounted) {
-        if (generated) {
-          setImageSrc(generated);
-        } else {
-          setImageSrc(product.image); // Fallback
-        }
-        setLoading(false);
+      // Create a specific prompt for the product
+      const prompt = `Professional product photography of ${product.name}: ${product.description}. Luxury, minimalist, soft pink lighting, high end, 4k, clean background.`;
+      const generated = await generateImage(prompt, `product-${product.id}`);
+      if (generated) {
+        setImageSrc(generated);
+      } else {
+        // Fallback to the static image if gen fails
+        setImageSrc(product.image);
       }
     };
-
     fetchImage();
-    return () => { mounted = false; };
   }, [product]);
 
   const handleOrder = (e: React.MouseEvent) => {
@@ -50,17 +37,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="group relative flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-soft-pink transition-shadow duration-500">
       {/* Image */}
       <div className="relative aspect-[4/5] overflow-hidden bg-blush flex items-center justify-center">
-        {loading ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-soft-pink/20 animate-pulse">
-             <Loader2 className="w-8 h-8 text-hot-pink animate-spin mb-2" />
-             <span className="text-[10px] uppercase tracking-widest text-hot-pink">Designing...</span>
-          </div>
-        ) : (
+        {imageSrc ? (
           <img
-            src={imageSrc || product.image}
+            src={imageSrc}
             alt={product.name}
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 animate-fade-in"
           />
+        ) : (
+          <div className="w-full h-full bg-soft-pink/20 animate-pulse flex items-center justify-center">
+             <div className="w-8 h-8 rounded-full border-2 border-hot-pink border-t-transparent animate-spin"></div>
+          </div>
         )}
         
         {/* Floating Tag */}

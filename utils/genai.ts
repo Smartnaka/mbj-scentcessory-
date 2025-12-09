@@ -1,6 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Support both standard Node env (API_KEY) and Vite/Client env (VITE_API_KEY)
+const apiKey = process.env.API_KEY || (import.meta as any).env?.VITE_API_KEY;
+
+// Initialize with the resolved key, or empty string to prevent immediate crash (calls will fail gracefully)
+const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
 export async function generateImage(prompt: string, cacheKey?: string): Promise<string | null> {
   // 1. Try to get from cache first
@@ -8,7 +12,6 @@ export async function generateImage(prompt: string, cacheKey?: string): Promise<
     try {
       const cached = localStorage.getItem(cacheKey);
       if (cached) {
-        console.log(`[GenAI] Loaded from cache: ${cacheKey}`);
         return cached;
       }
     } catch (e) {
@@ -17,6 +20,11 @@ export async function generateImage(prompt: string, cacheKey?: string): Promise<
   }
 
   // 2. Generate if not in cache
+  if (!apiKey) {
+    console.warn("GenAI: No API Key found. Skipping generation.");
+    return null;
+  }
+
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash-image',

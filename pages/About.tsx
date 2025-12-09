@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { generateImage } from '../utils/genai';
-import { Loader2 } from 'lucide-react';
 
 export const About: React.FC = () => {
   const [aboutImage, setAboutImage] = useState<string | null>(null);
+  
+  const FALLBACK_ABOUT = "https://images.unsplash.com/photo-1596918833989-13e55164998d?q=80&w=2070&auto=format&fit=crop";
 
   useEffect(() => {
-    let mounted = true;
-    const loadImages = async () => {
-        const prompt = "Artistic photography of pink peonies and luxury perfume bottles, soft lighting, feminine, elegant, high quality.";
-        const generated = await generateImage(prompt, 'img_cache_about_v1');
-        if (mounted && generated) setAboutImage(generated);
+    const fetchImage = async () => {
+      const prompt = "Artistic photography of pink peonies and luxury perfume bottles on a marble table, soft lighting, feminine, elegant, 4k.";
+      const generated = await generateImage(prompt, 'about-image-v1');
+      if (generated) {
+        setAboutImage(generated);
+      } else {
+        setAboutImage(FALLBACK_ABOUT);
+      }
     };
-    loadImages();
-    return () => { mounted = false; };
+    fetchImage();
   }, []);
 
   return (
@@ -38,10 +41,7 @@ export const About: React.FC = () => {
                className="w-full h-full object-cover animate-fade-in" 
              />
            ) : (
-             <div className="flex flex-col items-center justify-center">
-                <Loader2 className="w-8 h-8 text-hot-pink animate-spin mb-2" />
-                <span className="text-[10px] uppercase tracking-widest text-hot-pink">Loading Aesthetics...</span>
-             </div>
+             <div className="w-full h-full bg-soft-pink/30 animate-pulse"></div>
            )}
           <div className="absolute inset-0 bg-hot-pink/10 mix-blend-overlay"></div>
         </div>

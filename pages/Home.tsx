@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PRODUCTS, TESTIMONIALS } from '../constants';
 import { ProductCard } from '../components/ProductCard';
-import { ArrowRight, Star, Heart, Loader2 } from 'lucide-react';
+import { ArrowRight, Star, Heart } from 'lucide-react';
 import { generateImage } from '../utils/genai';
 
 interface HomeProps {
@@ -12,39 +12,42 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
   const featuredProducts = PRODUCTS.filter(p => p.isFeatured).slice(0, 4);
   const [heroImage, setHeroImage] = useState<string | null>(null);
   
+  // Static fallback matches the luxury feminine aesthetic
+  const FALLBACK_HERO = "https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?q=80&w=2070&auto=format&fit=crop";
+
   useEffect(() => {
-    let mounted = true;
-    const loadImages = async () => {
-        const heroPrompt = "A stunning, high-fashion, photorealistic image of a woman with a wrist wearing elegant rose gold jewelry, holding a luxury perfume bottle. Soft pink background, elegant, feminine, high quality, 4k resolution.";
-        // Use a consistent cache key so we don't regenerate on every refresh
-        const generatedHero = await generateImage(heroPrompt, 'img_cache_home_hero_v1');
-        
-        if (mounted && generatedHero) {
-            setHeroImage(generatedHero);
-        }
+    const fetchImages = async () => {
+      const heroPrompt = "Photorealistic luxury close-up shot of a woman's hand wearing elegant rose gold bracelet and rings, holding a crystal perfume bottle. Soft pink lighting, high fashion, 8k resolution, cinematic depth of field, feminine aesthetic.";
+      
+      const generatedHero = await generateImage(heroPrompt, 'hero-image-main-v2');
+      if (generatedHero) {
+        setHeroImage(generatedHero);
+      } else {
+        setHeroImage(FALLBACK_HERO);
+      }
     };
-    loadImages();
-    return () => { mounted = false; };
+
+    fetchImages();
   }, []);
 
   return (
     <div className="w-full bg-luxury-white">
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-blush">
-        {/* Background Image/GenAI Content */}
+        {/* Background Image */}
         <div className="absolute inset-0">
-            {heroImage ? (
-                <img 
-                    src={heroImage} 
-                    alt="Luxury Perfume Model" 
-                    className="w-full h-full object-cover animate-fade-in"
-                />
-            ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center bg-soft-pink/10 animate-pulse">
-                     <Loader2 className="w-12 h-12 text-hot-pink animate-spin mb-4" />
-                     <span className="text-xs uppercase tracking-widest text-hot-pink">Curating Luxury Experience...</span>
-                </div>
-            )}
+          {heroImage ? (
+            <img 
+                src={heroImage} 
+                alt="Luxury Perfume Model" 
+                className="w-full h-full object-cover animate-fade-in"
+            />
+          ) : (
+             // Show a soft background while loading (or if JS hasn't hydrated)
+            <div className="w-full h-full bg-soft-pink animate-pulse flex items-center justify-center">
+              <span className="text-white font-serif tracking-widest uppercase text-sm">Curating Luxury...</span>
+            </div>
+          )}
            <div className="absolute inset-0 bg-gradient-to-r from-soft-pink/40 to-transparent mix-blend-overlay"></div>
            <div className="absolute inset-0 bg-black/10"></div>
         </div>

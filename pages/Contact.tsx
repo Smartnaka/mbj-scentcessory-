@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { WHATSAPP_NUMBER } from '../constants';
-import { ArrowUpRight, Instagram, MessageCircle, Loader2 } from 'lucide-react';
+import { Instagram, MessageCircle } from 'lucide-react';
 import { generateImage } from '../utils/genai';
 
 export const Contact: React.FC = () => {
   const [contactImage, setContactImage] = useState<string | null>(null);
+  
+  const FALLBACK_CONTACT = "https://images.unsplash.com/photo-1522335789203-abd1c91f167b?q=80&w=2070&auto=format&fit=crop";
 
   useEffect(() => {
-    let mounted = true;
-    const loadImages = async () => {
-        const prompt = "A clean, minimal, luxury desk setup with fresh pink flowers, soft lighting, elegant vibe, photorealistic.";
-        const generated = await generateImage(prompt, 'img_cache_contact_v1');
-        if (mounted && generated) setContactImage(generated);
+    const fetchImage = async () => {
+      const prompt = "A clean, minimal, luxury desk setup with fresh pink flowers, soft lighting, elegant vibe, photorealistic.";
+      const generated = await generateImage(prompt, 'contact-image-v1');
+      if (generated) {
+        setContactImage(generated);
+      } else {
+        setContactImage(FALLBACK_CONTACT);
+      }
     };
-    loadImages();
-    return () => { mounted = false; };
+    fetchImage();
   }, []);
 
   return (
@@ -42,7 +46,7 @@ export const Contact: React.FC = () => {
                    <a href="#" className="w-12 h-12 rounded-full bg-blush flex items-center justify-center text-hot-pink hover:bg-hot-pink hover:text-white transition-all">
                       <Instagram size={20} />
                    </a>
-                   {/* TikTok Icon placeholder using generic icon */}
+                   {/* TikTok Icon placeholder */}
                    <a href="#" className="w-12 h-12 rounded-full bg-blush flex items-center justify-center text-hot-pink hover:bg-hot-pink hover:text-white transition-all">
                       <span className="font-bold text-xs">TT</span>
                    </a>
@@ -53,15 +57,13 @@ export const Contact: React.FC = () => {
           {/* Image Side */}
           <div className="w-full md:w-1/2 relative bg-blush flex items-center justify-center overflow-hidden">
              {contactImage ? (
-                 <img 
-                   src={contactImage}
-                   className="w-full h-full object-cover opacity-80 animate-fade-in"
-                   alt="Contact"
-                 />
+                <img 
+                  src={contactImage}
+                  className="w-full h-full object-cover opacity-80 animate-fade-in"
+                  alt="Contact"
+                />
              ) : (
-                <div className="flex flex-col items-center justify-center">
-                    <Loader2 className="w-8 h-8 text-hot-pink animate-spin mb-2" />
-                </div>
+                <div className="w-full h-full bg-soft-pink/30 animate-pulse"></div>
              )}
              <div className="absolute inset-0 bg-hot-pink/10 mix-blend-overlay"></div>
           </div>
