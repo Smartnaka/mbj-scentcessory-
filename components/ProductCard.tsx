@@ -15,18 +15,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   useEffect(() => {
     let mounted = true;
     const fetchImage = async () => {
-      // Create a specific, detailed prompt for the product
+      // Check if we have a cached version or need to generate
+      const cacheKey = `img_cache_prod_${product.id}`;
+      
       const prompt = `Professional luxury product photography of ${product.name}, ${product.description}. 
       Style: Minimalist, high-end, soft pink and rose gold color palette, soft lighting, photorealistic, 4k resolution. 
       The product should be the central focus on a clean background.`;
       
-      const generated = await generateImage(prompt);
+      // Pass cacheKey to the generator
+      const generated = await generateImage(prompt, cacheKey);
+      
       if (mounted) {
         if (generated) {
           setImageSrc(generated);
         } else {
-          // Fallback to the static URL if generation fails (though user reported they are broken, it's a safety net)
-          setImageSrc(product.image);
+          setImageSrc(product.image); // Fallback
         }
         setLoading(false);
       }
@@ -50,7 +53,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {loading ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-soft-pink/20 animate-pulse">
              <Loader2 className="w-8 h-8 text-hot-pink animate-spin mb-2" />
-             <span className="text-[10px] uppercase tracking-widest text-hot-pink">Creating Luxury...</span>
+             <span className="text-[10px] uppercase tracking-widest text-hot-pink">Designing...</span>
           </div>
         ) : (
           <img

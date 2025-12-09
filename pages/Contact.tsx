@@ -10,7 +10,7 @@ export const Contact: React.FC = () => {
     let mounted = true;
     const loadImages = async () => {
         const prompt = "A clean, minimal, luxury desk setup with fresh pink flowers, soft lighting, elegant vibe, photorealistic.";
-        const generated = await generateImage(prompt);
+        const generated = await generateImage(prompt, 'img_cache_contact_v1');
         if (mounted && generated) setContactImage(generated);
     };
     loadImages();

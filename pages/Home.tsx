@@ -15,10 +15,9 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
   useEffect(() => {
     let mounted = true;
     const loadImages = async () => {
-        // Hero Prompt specifically requested by user
         const heroPrompt = "A stunning, high-fashion, photorealistic image of a woman with a wrist wearing elegant rose gold jewelry, holding a luxury perfume bottle. Soft pink background, elegant, feminine, high quality, 4k resolution.";
-        
-        const generatedHero = await generateImage(heroPrompt);
+        // Use a consistent cache key so we don't regenerate on every refresh
+        const generatedHero = await generateImage(heroPrompt, 'img_cache_home_hero_v1');
         
         if (mounted && generatedHero) {
             setHeroImage(generatedHero);

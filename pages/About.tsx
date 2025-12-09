@@ -9,7 +9,7 @@ export const About: React.FC = () => {
     let mounted = true;
     const loadImages = async () => {
         const prompt = "Artistic photography of pink peonies and luxury perfume bottles, soft lighting, feminine, elegant, high quality.";
-        const generated = await generateImage(prompt);
+        const generated = await generateImage(prompt, 'img_cache_about_v1');
         if (mounted && generated) setAboutImage(generated);
     };
     loadImages();
