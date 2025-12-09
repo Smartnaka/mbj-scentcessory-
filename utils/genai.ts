@@ -1,10 +1,30 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Support both standard Node env (API_KEY) and Vite/Client env (VITE_API_KEY)
-const apiKey = process.env.API_KEY || (import.meta as any).env?.VITE_API_KEY;
+// Safely get the API key without crashing if 'process' is undefined
+const getApiKey = () => {
+  // 1. Try Vite standard (import.meta.env)
+  try {
+    // @ts-ignore
+    if (import.meta && import.meta.env && import.meta.env.VITE_API_KEY) {
+      // @ts-ignore
+      return import.meta.env.VITE_API_KEY;
+    }
+  } catch (e) {}
 
-// Initialize with the resolved key, or empty string to prevent immediate crash (calls will fail gracefully)
-const ai = new GoogleGenAI({ apiKey: apiKey || "" });
+  // 2. Try Node/Webpack standard (process.env)
+  try {
+    if (typeof process !== 'undefined' && process.env && process.env.API_KEY) {
+      return process.env.API_KEY;
+    }
+  } catch (e) {}
+
+  return "";
+}
+
+const apiKey = getApiKey();
+
+// Initialize with the resolved key. If empty, specific AI calls will fail but app won't crash.
+const ai = new GoogleGenAI({ apiKey });
 
 export async function generateImage(prompt: string, cacheKey?: string): Promise<string | null> {
   // 1. Try to get from cache first
