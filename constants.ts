@@ -1,15 +1,15 @@
 import { Category, Product, Testimonial } from './types';
 
-export const WHATSAPP_NUMBER = "2348166330992"; // Replace with actual number
+export const WHATSAPP_NUMBER = "2348012345678"; // Replace with actual number
 
 export const PRODUCTS: Product[] = [
   // Perfumes
   {
-    id: 'p1', 
+    id: 'p1',
     name: 'Blush Peony',
     price: 45000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://i.postimg.cc/7Yb1DyQY/download-5.png',
     description: 'A romantic blend of peony petals and soft musk.',
     isFeatured: true
   },
@@ -18,7 +18,7 @@ export const PRODUCTS: Product[] = [
     name: 'Rose & Gold',
     price: 38000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1594035910387-fea4779426e9?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://i.postimg.cc/50nvdPBH/download-4.png',
     description: 'Elegant floral notes with a hint of spicy vanilla.',
     isFeatured: true
   },
@@ -27,7 +27,7 @@ export const PRODUCTS: Product[] = [
     name: 'Velvet Orchid',
     price: 42000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://i.postimg.cc/tCL6jnxM/download.png',
     description: 'Sophisticated orchid notes with a touch of amber.',
     isFeatured: false
   },
@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pink Essence',
     price: 50000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
+    image: 'https://i.postimg.cc/7Yb1DyQY/download-5.png',
     description: 'Rich fruit tones blended with sweet jasmine.',
     isFeatured: false
   },
