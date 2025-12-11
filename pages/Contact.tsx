@@ -1,25 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { WHATSAPP_NUMBER } from '../constants';
 import { Instagram, MessageCircle } from 'lucide-react';
-import { generateImage } from '../utils/genai';
 
 export const Contact: React.FC = () => {
-  const [contactImage, setContactImage] = useState<string | null>(null);
-  
-  const FALLBACK_CONTACT = "https://images.unsplash.com/photo-1522335789203-abd1c91f167b?q=80&w=2070&auto=format&fit=crop";
-
-  useEffect(() => {
-    const fetchImage = async () => {
-      const prompt = "A clean, minimal, luxury desk setup with fresh pink flowers, soft lighting, elegant vibe, photorealistic.";
-      const generated = await generateImage(prompt, 'contact-image-v1');
-      if (generated) {
-        setContactImage(generated);
-      } else {
-        setContactImage(FALLBACK_CONTACT);
-      }
-    };
-    fetchImage();
-  }, []);
+  const contactImage = "https://images.unsplash.com/photo-1522335789203-abd1c91f167b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3";
 
   return (
     <div className="w-full min-h-screen bg-luxury-white pt-32 pb-24 px-6 md:px-12">
@@ -56,16 +40,12 @@ export const Contact: React.FC = () => {
 
           {/* Image Side */}
           <div className="w-full md:w-1/2 relative bg-blush flex items-center justify-center overflow-hidden">
-             {contactImage ? (
-                <img 
-                  src={contactImage}
-                  className="w-full h-full object-cover opacity-80 animate-fade-in"
-                  alt="Contact"
-                />
-             ) : (
-                <div className="w-full h-full bg-soft-pink/30 animate-pulse"></div>
-             )}
-             <div className="absolute inset-0 bg-hot-pink/10 mix-blend-overlay"></div>
+            <img 
+              src={contactImage}
+              className="w-full h-full object-cover opacity-80 animate-fade-in"
+              alt="Contact Us"
+            />
+            <div className="absolute inset-0 bg-hot-pink/10 mix-blend-overlay"></div>
           </div>
 
        </div>
