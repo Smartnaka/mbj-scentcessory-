@@ -1,6 +1,6 @@
 import { Category, Product, Testimonial } from './types';
 
-export const WHATSAPP_NUMBER = "2348012345678"; // Replace with actual number
+export const WHATSAPP_NUMBER = "2348166330992"; // Replace with actual number
 
 export const PRODUCTS: Product[] = [
   // Perfumes
@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     id: 'p2',
     name: 'Rose & Gold',
     price: 38000,
-    category: Category.PERFUME,
+    category: Category.JEWELRY,
     image: 'https://i.postimg.cc/50nvdPBH/download-4.png',
     description: 'Elegant floral notes with a hint of spicy vanilla.',
     isFeatured: true
