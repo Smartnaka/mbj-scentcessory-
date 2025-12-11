@@ -1,7 +1,7 @@
 import React from 'react';
-import { PRODUCTS, TESTIMONIALS } from '../constants';
+import { PRODUCTS, TESTIMONIALS, WHATSAPP_NUMBER } from '../constants';
 import { ProductCard } from '../components/ProductCard';
-import { ArrowRight, Star, Heart } from 'lucide-react';
+import { ArrowRight, Star, Heart, MessageCircle } from 'lucide-react';
 
 interface HomeProps {
   setPage: (page: string) => void;
@@ -50,8 +50,8 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
               </h1>
               
               {/* Description - improved mobile padding and sizing */}
-              <div className="bg-white/97 backdrop-blur-md px-5 py-4 md:px-6 md:py-5 rounded-2xl md:rounded-2xl mb-8 md:mb-10 max-w-xl shadow-2xl">
-                <p className="text-charcoal text-sm sm:text-base md:text-lg font-light leading-relaxed">
+              <div className="bg-white backdrop-blur-md px-5 py-4 md:px-6 md:py-5 rounded-2xl md:rounded-2xl mb-8 md:mb-10 max-w-xl shadow-2xl">
+                <p className="text-charcoal text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                   Where femininity meets premium fragrance and timeless jewelry. Discover the essence of elegance.
                 </p>
               </div>
@@ -110,6 +110,31 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
                </div>
              ))}
            </div>
+        </div>
+      </section>
+
+      {/* WhatsApp CTA Section */}
+      <section className="py-24 px-6 bg-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-hot-pink/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-soft-pink/10 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="bg-gradient-to-br from-hot-pink to-pink-500 text-white rounded-3xl p-12 md:p-16 shadow-2xl">
+            <MessageCircle className="w-16 h-16 mx-auto mb-6 animate-bounce" />
+            <h2 className="font-serif text-3xl md:text-5xl mb-6">Order via WhatsApp</h2>
+            <p className="text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+              Get personalized recommendations, ask questions, and place your order directly through WhatsApp. We're here to help you find your perfect scent and jewelry!
+            </p>
+            <button 
+              onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello! I would like to know more about your luxury collection.')}`, '_blank')}
+              className="bg-white text-hot-pink px-10 py-4 rounded-full uppercase tracking-widest text-sm font-bold hover:bg-stone-100 transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 hover:scale-105"
+            >
+              <MessageCircle size={20} />
+              Chat with Us Now
+            </button>
+            <p className="text-white/70 text-sm mt-6">Fast responses • Personalized service • Secure ordering</p>
+          </div>
         </div>
       </section>
     </div>
