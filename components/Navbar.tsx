@@ -27,8 +27,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
   const NavLink = ({ id, label }: { id: string, label: string }) => (
     <button
       onClick={() => handleNav(id)}
-      className={`text-sm uppercase tracking-widest transition-all duration-300 relative py-2 font-medium
-        ${activePage === id ? 'text-hot-pink' : 'text-charcoal hover:text-hot-pink'}`}
+      className={`text-sm uppercase tracking-widest transition-all duration-300 relative py-2 font-bold
+        ${activePage === id ? 'text-hot-pink' : 'text-white hover:text-hot-pink'}`}
+      style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}
     >
       {label}
       <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-hot-pink transition-all duration-300
@@ -41,8 +42,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
     <>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out
         ${isScrolled 
-          ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm' 
-          : 'bg-transparent py-6'}`}>
+          ? 'bg-white/95 backdrop-blur-md py-4 shadow-lg' 
+          : 'bg-black/40 backdrop-blur-sm py-6'}`}>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center">
@@ -52,24 +53,76 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
               className="flex-shrink-0 cursor-pointer z-50"
               onClick={() => handleNav('home')}
             >
-              <h1 className="font-serif text-3xl font-bold tracking-widest text-charcoal">
+              <h1 className={`font-serif text-3xl font-bold tracking-widest transition-colors duration-300
+                ${isScrolled ? 'text-charcoal' : 'text-white'}`}
+                style={!isScrolled ? { textShadow: '2px 2px 4px rgba(0,0,0,0.6)' } : {}}
+              >
                 MBJ<span className="text-hot-pink">.</span>
               </h1>
             </div>
 
             {/* Desktop Center Nav */}
-            <div className="hidden md:flex space-x-12">
-              <NavLink id="home" label="Home" />
-              <NavLink id="shop" label="Shop" />
-              <NavLink id="about" label="About" />
-              <NavLink id="contact" label="Contact" />
+            <div className={`hidden md:flex space-x-12 ${isScrolled ? 'text-nav-scrolled' : ''}`}>
+              {isScrolled ? (
+                <>
+                  <button
+                    onClick={() => handleNav('home')}
+                    className={`text-sm uppercase tracking-widest transition-all duration-300 relative py-2 font-bold
+                      ${activePage === 'home' ? 'text-hot-pink' : 'text-charcoal hover:text-hot-pink'}`}
+                  >
+                    Home
+                    <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-hot-pink transition-all duration-300
+                      ${activePage === 'home' ? 'opacity-100' : 'opacity-0'}`} 
+                    />
+                  </button>
+                  <button
+                    onClick={() => handleNav('shop')}
+                    className={`text-sm uppercase tracking-widest transition-all duration-300 relative py-2 font-bold
+                      ${activePage === 'shop' ? 'text-hot-pink' : 'text-charcoal hover:text-hot-pink'}`}
+                  >
+                    Shop
+                    <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-hot-pink transition-all duration-300
+                      ${activePage === 'shop' ? 'opacity-100' : 'opacity-0'}`} 
+                    />
+                  </button>
+                  <button
+                    onClick={() => handleNav('about')}
+                    className={`text-sm uppercase tracking-widest transition-all duration-300 relative py-2 font-bold
+                      ${activePage === 'about' ? 'text-hot-pink' : 'text-charcoal hover:text-hot-pink'}`}
+                  >
+                    About
+                    <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-hot-pink transition-all duration-300
+                      ${activePage === 'about' ? 'opacity-100' : 'opacity-0'}`} 
+                    />
+                  </button>
+                  <button
+                    onClick={() => handleNav('contact')}
+                    className={`text-sm uppercase tracking-widest transition-all duration-300 relative py-2 font-bold
+                      ${activePage === 'contact' ? 'text-hot-pink' : 'text-charcoal hover:text-hot-pink'}`}
+                  >
+                    Contact
+                    <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-hot-pink transition-all duration-300
+                      ${activePage === 'contact' ? 'opacity-100' : 'opacity-0'}`} 
+                    />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <NavLink id="home" label="Home" />
+                  <NavLink id="shop" label="Shop" />
+                  <NavLink id="about" label="About" />
+                  <NavLink id="contact" label="Contact" />
+                </>
+              )}
             </div>
 
             {/* Actions */}
             <div className="flex items-center space-x-6">
               <button 
                 onClick={() => handleNav('shop')}
-                className="hidden md:flex items-center gap-2 text-xs uppercase tracking-widest text-charcoal hover:text-hot-pink transition-colors"
+                className={`hidden md:flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-colors
+                  ${isScrolled ? 'text-charcoal hover:text-hot-pink' : 'text-white hover:text-hot-pink'}`}
+                style={!isScrolled ? { textShadow: '1px 1px 3px rgba(0,0,0,0.5)' } : {}}
               >
                 <span>Bag</span>
                 <span className="w-1.5 h-1.5 bg-hot-pink rounded-full"></span>
@@ -78,9 +131,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
 
               <button 
                 onClick={() => setIsMenuOpen(true)}
-                className="md:hidden text-charcoal hover:text-hot-pink transition-colors"
+                className={`md:hidden transition-colors ${isScrolled ? 'text-charcoal hover:text-hot-pink' : 'text-white hover:text-hot-pink'}`}
+                style={!isScrolled ? { filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.5))' } : {}}
               >
-                <Menu size={28} strokeWidth={1.5} />
+                <Menu size={28} strokeWidth={2} />
               </button>
             </div>
           </div>
