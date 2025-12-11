@@ -11,7 +11,7 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
   const featuredProducts = PRODUCTS.filter(p => p.isFeatured).slice(0, 4);
   
   // High-quality hero image
-  const heroImage = "https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3";
+  const heroImage = "https://i.postimg.cc/zDRtMF65/unnamed-6.jpg";
 
   return (
     <div className="w-full bg-luxury-white">
@@ -23,6 +23,11 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
             src={heroImage} 
             alt="Luxury Perfume and Jewelry" 
             className="w-full h-full object-cover animate-fade-in"
+            loading="eager"
+            onError={(e) => {
+              console.error('Image failed to load');
+              e.currentTarget.style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-soft-pink/40 to-transparent mix-blend-overlay"></div>
           <div className="absolute inset-0 bg-black/10"></div>
