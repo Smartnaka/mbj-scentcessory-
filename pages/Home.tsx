@@ -40,7 +40,7 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
             <div className="max-w-2xl animate-slide-up">
               {/* Badge with better contrast */}
               <span className="inline-block px-5 py-2 mb-8 border-2 border-hot-pink text-hot-pink text-[11px] font-bold uppercase tracking-[0.25em] rounded-full bg-white shadow-lg">
-                New Collection 2024
+                New Collection 2025
               </span>
               
               {/* Title with text shadow and white color */}
