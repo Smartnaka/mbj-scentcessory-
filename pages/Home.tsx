@@ -16,7 +16,7 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
   return (
     <div className="w-full bg-luxury-white">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-blush">
+      <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-blush">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
@@ -29,40 +29,40 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
               e.currentTarget.style.display = 'none';
             }}
           />
-          {/* Darker overlay for better text visibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+          {/* Enhanced overlay for mobile */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/60 md:bg-gradient-to-r md:from-black/60 md:via-black/40 md:to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
         </div>
 
         {/* Content Overlay */}
         <div className="absolute inset-0 flex items-center">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
+          <div className="max-w-7xl mx-auto px-5 md:px-12 w-full">
             <div className="max-w-2xl animate-slide-up">
-              {/* Badge with better contrast */}
-              <span className="inline-block px-5 py-2 mb-8 border-2 border-hot-pink text-hot-pink text-[11px] font-bold uppercase tracking-[0.25em] rounded-full bg-white shadow-lg">
+              {/* Badge - more compact on mobile */}
+              <span className="inline-block px-4 py-2 md:px-5 md:py-2 mb-6 md:mb-8 border-2 border-hot-pink text-hot-pink text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] rounded-full bg-white/95 backdrop-blur-sm shadow-lg">
                 New Collection 2025
               </span>
               
-              {/* Title with text shadow and white color */}
-              <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-6" style={{textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
+              {/* Title - adjusted sizing for mobile */}
+              <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] md:leading-tight mb-5 md:mb-6" style={{textShadow: '2px 2px 12px rgba(0,0,0,0.8)'}}>
                 Indulge in <br/>
-                <span className="italic text-hot-pink" style={{textShadow: '2px 2px 12px rgba(255,105,180,0.6)'}}>Luxury Scents</span>
+                <span className="italic text-hot-pink block mt-1" style={{textShadow: '2px 2px 16px rgba(255,105,180,0.8), 0 0 30px rgba(255,105,180,0.4)'}}>Luxury Scents</span>
               </h1>
               
-              {/* Description with better background */}
-              <div className="bg-white/95 backdrop-blur-sm px-6 py-5 rounded-2xl mb-10 max-w-xl shadow-xl">
-                <p className="text-charcoal text-base md:text-lg font-light leading-relaxed">
+              {/* Description - improved mobile padding and sizing */}
+              <div className="bg-white/97 backdrop-blur-md px-5 py-4 md:px-6 md:py-5 rounded-2xl md:rounded-2xl mb-8 md:mb-10 max-w-xl shadow-2xl">
+                <p className="text-charcoal text-sm sm:text-base md:text-lg font-light leading-relaxed">
                   Where femininity meets premium fragrance and timeless jewelry. Discover the essence of elegance.
                 </p>
               </div>
               
-              {/* Button with enhanced styling */}
+              {/* Button - full width on mobile, auto on desktop */}
               <button 
                 onClick={() => setPage('shop')}
-                className="group bg-hot-pink text-white px-12 py-5 rounded-full uppercase tracking-widest text-sm font-bold hover:bg-pink-600 transition-all duration-300 shadow-2xl hover:shadow-soft-pink flex items-center gap-3 hover:scale-105"
+                className="group bg-gradient-to-r from-hot-pink to-pink-500 text-white w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 rounded-full uppercase tracking-widest text-xs md:text-sm font-bold hover:from-pink-500 hover:to-hot-pink transition-all duration-300 shadow-2xl hover:shadow-hot-pink/50 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95"
               >
                 Shop Now
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
