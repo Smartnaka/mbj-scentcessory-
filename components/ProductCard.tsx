@@ -38,12 +38,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <h3 className="font-serif text-xl text-charcoal mb-2">
           {product.name}
         </h3>
-        <p className="text-stone-500 text-sm font-light mb-4 line-clamp-1">
+        <p className="text-stone-500 text-sm font-light mb-6 line-clamp-2">
            {product.description}
         </p>
-        <span className="font-sans text-lg text-hot-pink font-medium mb-6">
-          ₦{product.price.toLocaleString()}
-        </span>
 
         <button
           onClick={handleOrder}
