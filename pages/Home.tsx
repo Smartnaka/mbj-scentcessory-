@@ -29,30 +29,40 @@ export const Home: React.FC<HomeProps> = ({ setPage }) => {
               e.currentTarget.style.display = 'none';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-soft-pink/40 to-transparent mix-blend-overlay"></div>
-          <div className="absolute inset-0 bg-black/10"></div>
+          {/* Darker overlay for better text visibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
         </div>
 
         {/* Content Overlay */}
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
-            <div className="max-w-xl animate-slide-up">
-              <span className="inline-block px-4 py-1 mb-6 border border-hot-pink text-hot-pink text-[10px] font-bold uppercase tracking-[0.2em] rounded-full bg-white/80 backdrop-blur-sm">
+            <div className="max-w-2xl animate-slide-up">
+              {/* Badge with better contrast */}
+              <span className="inline-block px-5 py-2 mb-8 border-2 border-hot-pink text-hot-pink text-[11px] font-bold uppercase tracking-[0.25em] rounded-full bg-white shadow-lg">
                 New Collection 2024
               </span>
-              <h1 className="font-serif text-5xl md:text-7xl text-charcoal leading-tight mb-6 drop-shadow-sm">
+              
+              {/* Title with text shadow and white color */}
+              <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-6" style={{textShadow: '2px 2px 8px rgba(0,0,0,0.5)'}}>
                 Indulge in <br/>
-                <span className="italic text-hot-pink">Luxury Scents</span>
+                <span className="italic text-hot-pink" style={{textShadow: '2px 2px 12px rgba(255,105,180,0.6)'}}>Luxury Scents</span>
               </h1>
-              <p className="text-stone-700 text-lg md:text-xl font-light mb-10 max-w-md leading-relaxed drop-shadow-sm">
-                Where femininity meets premium fragrance and timeless jewelry. Discover the essence of elegance.
-              </p>
+              
+              {/* Description with better background */}
+              <div className="bg-white/95 backdrop-blur-sm px-6 py-5 rounded-2xl mb-10 max-w-xl shadow-xl">
+                <p className="text-charcoal text-base md:text-lg font-light leading-relaxed">
+                  Where femininity meets premium fragrance and timeless jewelry. Discover the essence of elegance.
+                </p>
+              </div>
+              
+              {/* Button with enhanced styling */}
               <button 
                 onClick={() => setPage('shop')}
-                className="group bg-hot-pink text-white px-10 py-4 rounded-full uppercase tracking-widest text-xs font-bold hover:bg-pink-600 transition-all duration-300 shadow-lg hover:shadow-soft-pink flex items-center gap-3"
+                className="group bg-hot-pink text-white px-12 py-5 rounded-full uppercase tracking-widest text-sm font-bold hover:bg-pink-600 transition-all duration-300 shadow-2xl hover:shadow-soft-pink flex items-center gap-3 hover:scale-105"
               >
                 Shop Now
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
