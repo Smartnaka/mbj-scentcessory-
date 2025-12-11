@@ -1,11 +1,11 @@
 import { Category, Product, Testimonial } from './types';
 
-export const WHATSAPP_NUMBER = "2348012345678"; // Replace with actual number
+export const WHATSAPP_NUMBER = "2348166330992"; // Replace with actual number
 
 export const PRODUCTS: Product[] = [
   // Perfumes
   {
-    id: 'p1',
+    id: 'p1', 
     name: 'Blush Peony',
     price: 45000,
     category: Category.PERFUME,
