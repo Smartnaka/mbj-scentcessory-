@@ -7,7 +7,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'p1',
     name: 'Blush Peony',
-    price: 45000,
+    
     category: Category.PERFUME,
     image: 'https://i.postimg.cc/7Yb1DyQY/download-5.png',
     description: 'A romantic blend of peony petals and soft musk.',
@@ -16,7 +16,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'p2',
     name: 'Rose & Gold',
-    price: 38000,
+    
     category: Category.JEWELRY,
     image: 'https://i.postimg.cc/50nvdPBH/download-4.png',
     description: 'Elegant floral notes with a hint of spicy vanilla.',
@@ -25,7 +25,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'p3',
     name: 'Velvet Orchid',
-    price: 42000,
+    
     category: Category.PERFUME,
     image: 'https://i.postimg.cc/tCL6jnxM/download.png',
     description: 'Sophisticated orchid notes with a touch of amber.',
@@ -34,7 +34,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'p4',
     name: 'Pink Essence',
-    price: 50000,
+    
     category: Category.PERFUME,
     image: 'https://i.postimg.cc/7Yb1DyQY/download-5.png',
     description: 'Rich fruit tones blended with sweet jasmine.',
@@ -44,7 +44,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'j1',
     name: 'Rose Heart',
-    price: 85000,
+    
     category: Category.JEWELRY,
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: '18k rose gold plated necklace with a delicate heart.',
@@ -53,7 +53,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'j2',
     name: 'Blush Earrings',
-    price: 60000,
+  
     category: Category.JEWELRY,
     image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'Classic crystal cut stones set in rose gold.',
@@ -62,7 +62,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'j3',
     name: 'Pink Pearl',
-    price: 45000,
+  
     category: Category.JEWELRY,
     image: 'https://images.unsplash.com/photo-1602751584552-8ba731f6e1bd?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'A timeless statement piece with a pink hue.',
