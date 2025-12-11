@@ -9,7 +9,7 @@ export const PRODUCTS: Product[] = [
     name: 'Blush Peony',
     price: 45000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'A romantic blend of peony petals and soft musk.',
     isFeatured: true
   },
@@ -18,7 +18,7 @@ export const PRODUCTS: Product[] = [
     name: 'Rose & Gold',
     price: 38000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1594035910387-fea4779426e9?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1594035910387-fea4779426e9?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'Elegant floral notes with a hint of spicy vanilla.',
     isFeatured: true
   },
@@ -27,7 +27,7 @@ export const PRODUCTS: Product[] = [
     name: 'Velvet Orchid',
     price: 42000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'Sophisticated orchid notes with a touch of amber.',
     isFeatured: false
   },
@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pink Essence',
     price: 50000,
     category: Category.PERFUME,
-    image: 'https://images.unsplash.com/photo-1705642646631-419b7754b5df?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'Rich fruit tones blended with sweet jasmine.',
     isFeatured: false
   },
@@ -46,7 +46,7 @@ export const PRODUCTS: Product[] = [
     name: 'Rose Heart',
     price: 85000,
     category: Category.JEWELRY,
-    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: '18k rose gold plated necklace with a delicate heart.',
     isFeatured: true
   },
@@ -55,7 +55,7 @@ export const PRODUCTS: Product[] = [
     name: 'Blush Earrings',
     price: 60000,
     category: Category.JEWELRY,
-    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'Classic crystal cut stones set in rose gold.',
     isFeatured: true
   },
@@ -64,7 +64,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pink Pearl',
     price: 45000,
     category: Category.JEWELRY,
-    image: 'https://images.unsplash.com/photo-1602751584552-8ba731f6e1bd?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602751584552-8ba731f6e1bd?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'A timeless statement piece with a pink hue.',
     isFeatured: false
   },
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
     name: 'Diamond Rose',
     price: 120000,
     category: Category.JEWELRY,
-    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
     description: 'Elegance personified with simulated diamonds.',
     isFeatured: false
   }
