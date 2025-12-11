@@ -42,20 +42,20 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
     <>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out
         ${isScrolled 
-          ? 'bg-white/95 backdrop-blur-md py-4 shadow-lg' 
-          : 'bg-black/40 backdrop-blur-sm py-6'}`}>
+          ? 'bg-white/98 backdrop-blur-md py-3 md:py-4 shadow-lg' 
+          : 'bg-black/50 backdrop-blur-md py-4 md:py-6 border-b border-white/10'}`}>
         
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto px-5 md:px-6 lg:px-12">
           <div className="flex justify-between items-center">
             
-            {/* Logo */}
+            {/* Logo - slightly smaller on mobile */}
             <div 
               className="flex-shrink-0 cursor-pointer z-50"
               onClick={() => handleNav('home')}
             >
-              <h1 className={`font-serif text-3xl font-bold tracking-widest transition-colors duration-300
+              <h1 className={`font-serif text-2xl md:text-3xl font-bold tracking-widest transition-colors duration-300
                 ${isScrolled ? 'text-charcoal' : 'text-white'}`}
-                style={!isScrolled ? { textShadow: '2px 2px 4px rgba(0,0,0,0.6)' } : {}}
+                style={!isScrolled ? { textShadow: '2px 2px 6px rgba(0,0,0,0.8)' } : {}}
               >
                 MBJ<span className="text-hot-pink">.</span>
               </h1>
@@ -131,38 +131,58 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage }) => 
 
               <button 
                 onClick={() => setIsMenuOpen(true)}
-                className={`md:hidden transition-colors ${isScrolled ? 'text-charcoal hover:text-hot-pink' : 'text-white hover:text-hot-pink'}`}
-                style={!isScrolled ? { filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.5))' } : {}}
+                className={`md:hidden transition-colors p-2 ${isScrolled ? 'text-charcoal hover:text-hot-pink' : 'text-white hover:text-hot-pink'}`}
+                style={!isScrolled ? { filter: 'drop-shadow(1px 1px 3px rgba(0,0,0,0.8))' } : {}}
               >
-                <Menu size={28} strokeWidth={2} />
+                <Menu size={26} strokeWidth={2.5} />
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div className={`fixed inset-0 z-[60] bg-blush transform transition-transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="flex justify-between items-center p-6 py-8">
-          <span className="font-serif text-2xl font-bold tracking-widest text-charcoal">MBJ.</span>
+      {/* Mobile Menu - Premium Design */}
+      <div className={`fixed inset-0 z-[60] bg-gradient-to-br from-blush via-white to-blush transform transition-transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="flex justify-between items-center p-5 py-6 border-b border-stone-200">
+          <span className="font-serif text-2xl font-bold tracking-widest text-charcoal">MBJ<span className="text-hot-pink">.</span></span>
           <button 
             onClick={() => setIsMenuOpen(false)}
-            className="text-charcoal hover:text-hot-pink transition-colors"
+            className="text-charcoal hover:text-hot-pink transition-colors p-2 rounded-full hover:bg-hot-pink/10"
           >
-            <X size={32} strokeWidth={1.5} />
+            <X size={28} strokeWidth={2.5} />
           </button>
         </div>
         
-        <div className="flex flex-col items-center justify-center h-[80vh] space-y-8">
-          {['Home', 'Shop', 'About', 'Contact'].map((item, idx) => (
+        <div className="flex flex-col items-center justify-center h-[calc(100vh-100px)] space-y-2 px-6">
+          {[
+            { id: 'home', label: 'Home' },
+            { id: 'shop', label: 'Shop' },
+            { id: 'about', label: 'About' },
+            { id: 'contact', label: 'Contact' }
+          ].map((item) => (
             <button
-              key={item}
-              onClick={() => handleNav(item.toLowerCase())}
-              className="font-serif text-4xl text-charcoal hover:text-hot-pink transition-all duration-300"
+              key={item.id}
+              onClick={() => handleNav(item.id)}
+              className={`w-full text-center py-4 px-8 rounded-2xl font-serif text-3xl transition-all duration-300
+                ${activePage === item.id 
+                  ? 'bg-hot-pink text-white shadow-lg scale-105' 
+                  : 'text-charcoal hover:bg-white hover:shadow-md hover:scale-105'
+                }`}
             >
-              {item}
+              {item.label}
             </button>
           ))}
+          
+          {/* Bag indicator in mobile menu */}
+          <div className="pt-8 mt-4 border-t border-stone-200 w-full">
+            <button 
+              onClick={() => handleNav('shop')}
+              className="w-full py-4 px-8 rounded-2xl bg-white text-charcoal hover:bg-hot-pink hover:text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-md text-sm uppercase tracking-widest font-bold"
+            >
+              <ShoppingBag size={18} />
+              Shopping Bag (0)
+            </button>
+          </div>
         </div>
       </div>
     </>
